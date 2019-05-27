@@ -1,9 +1,10 @@
-package com.ericpodolsky.tennisscore.activities
+package com.ericpodolsky.tennisscore.utils
 
 val tennisScores = arrayOf("0", "15", "30", "40")
 
-fun findGameState(player1Score: Int, player2Score: Int): GameState {
-    val difference = Math.abs(player1Score - player2Score)
+/*
+fun findGameState(player1Score: GameScore, player2Score: GameScore): GameState {
+    val difference = Math.abs(player1Score.ordinal - player2Score.ordinal)
     val higherScore = Math.max(player1Score, player2Score)
     when (difference) {
         0 -> return if(higherScore >= 3) {
@@ -23,3 +24,4 @@ fun findGameState(player1Score: Int, player2Score: Int): GameState {
         }
     }
 }
+*/
