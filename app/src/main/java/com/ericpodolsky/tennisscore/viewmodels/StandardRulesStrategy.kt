@@ -3,6 +3,7 @@ package com.ericpodolsky.tennisscore.viewmodels
 import android.arch.lifecycle.MutableLiveData
 import com.ericpodolsky.tennisscore.models.PlayerModel
 import com.ericpodolsky.tennisscore.models.TennisScores
+import kotlin.math.abs
 
 class StandardRulesStrategy(private val minGamesToWinSet: Int = 6, private val setsToWinMatch: Int = 2) : RulesStrategy {
     override fun updatePlayersAfterIncrement(incrementedPlayerLiveData: MutableLiveData<PlayerModel>, staticPlayerLiveData: MutableLiveData<PlayerModel>) {
@@ -36,18 +37,18 @@ class StandardRulesStrategy(private val minGamesToWinSet: Int = 6, private val s
 
     override fun getFormattedScores(player1RawScore: Int?, player2RawScore: Int?): TennisScores? {
         if (player1RawScore != null && player2RawScore != null) {
-            if(player1RawScore < 3 && player2RawScore < 4 || player1RawScore < 4 && player2RawScore < 3) {
-                return TennisScores(TENNIS_SCORES[player1RawScore], TENNIS_SCORES[player2RawScore])
+            return if(player1RawScore < 3 && player2RawScore < 4 || player1RawScore < 4 && player2RawScore < 3) {
+                TennisScores(TENNIS_SCORES[player1RawScore], TENNIS_SCORES[player2RawScore])
             } else if(player1RawScore == player2RawScore) {
-                return TennisScores(DEUCE, DEUCE)
-            } else if(Math.abs(player1RawScore - player2RawScore) == 1) {
-                return if(player1RawScore > player2RawScore) {
+                TennisScores(DEUCE, DEUCE)
+            } else if(abs(player1RawScore - player2RawScore) == 1) {
+                if(player1RawScore > player2RawScore) {
                     TennisScores(AD, DISAD)
                 } else {
                     TennisScores(DISAD, AD)
                 }
             } else {
-                return TennisScores(TENNIS_SCORES[0], TENNIS_SCORES[0])
+                TennisScores(TENNIS_SCORES[0], TENNIS_SCORES[0])
             }
         }
         return null
@@ -55,10 +56,10 @@ class StandardRulesStrategy(private val minGamesToWinSet: Int = 6, private val s
 
     companion object {
         val TENNIS_SCORES = arrayOf("0", "15", "30", "40")
-        val DEUCE = "Deuce"
-        val AD = "Ad"
-        val DISAD = "Disad"
-        val WIN = "Win"
-        val LOSS = "Loss"
+        const val DEUCE = "Deuce"
+        const val AD = "Ad"
+        const val DISAD = "Disad"
+        //val WIN = "Win"
+        //val LOSS = "Loss"
     }
 }

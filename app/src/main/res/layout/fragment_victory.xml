@@ -10,7 +10,7 @@
         android:layout_height="0dp"
         android:background="#000000"
         android:textColor="#ffffff"
-        android:text="Game Over"
+        android:text="@string/game_over"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".8"

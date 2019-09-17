@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.ericpodolsky.tennisscore.R
-import com.ericpodolsky.tennisscore.VictoryFragment
 import com.ericpodolsky.tennisscore.databinding.ActivityGameScoreBinding
 import com.ericpodolsky.tennisscore.viewmodels.GameViewModel
 
@@ -31,9 +30,12 @@ class GameScoreActivity : AppCompatActivity() {
         */
     }
 
+    /*
     private fun showVictoryFragment() {
         val fragment = VictoryFragment()
 
 
     }
+
+     */
 }
